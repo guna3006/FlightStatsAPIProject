@@ -1,0 +1,44 @@
+{
+    "info": {
+        "name": "FlightStats API Collection",
+        "description": "API collection for FlightStats endpoints",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Search Flight",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/search?airline_code=AK&airline_number=11&departure_date=2023-09-08",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "search"
+                    ],
+                    "query": [
+                        {
+                            "key": "airline_code",
+                            "value": "AK",
+                            "description": "Airline code"
+                        },
+                        {
+                            "key": "airline_number",
+                            "value": "11",
+                            "description": "Airline number"
+                        },
+                        {
+                            "key": "departure_date",
+                            "value": "2023-09-08",
+                            "description": "Departure date"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
