@@ -3,7 +3,6 @@ import requests
 from datetime import datetime
 from db_init import Flight, session
 from scraper import scrape_essential_data
-import app_config
 
 async def get_flights_info(airline_code, airline_number, departure_date):
 
@@ -27,7 +26,7 @@ async def get_flights_info(airline_code, airline_number, departure_date):
     else:
         # getting latest flight data from website
         try:
-            flightstats_base_url = app_config.settings.flightstats_base_url
+            flightstats_base_url = "https://www.flightstats.com/v2/flight-tracker/"
             full_url = flightstats_base_url + f"{airline_code}/{airline_number}"
             departure_datetime = datetime.strptime(departure_date, "%Y-%m-%d")
             url_params = {

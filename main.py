@@ -5,14 +5,9 @@ from fastapi import FastAPI
 from celery import Celery
 import search_api
 from db_init import Base, engine
-import app_config
-import subprocess
 
 # Create the database schema
 Base.metadata.create_all(engine)
-
-# Configure logging
-logging.basicConfig(level=app_config.settings.log_level)
 root = logging.getLogger()
 if root.handlers:
     for handler in root.handlers:
