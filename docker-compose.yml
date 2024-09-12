@@ -4,12 +4,22 @@ services:
   app:
     build: .
     container_name: flightstats_app
-    command: sh -c "uvicorn main:app --host 0.0.0.0 --port 8000"
+    command: sh -c "uvicorn main:app --host localhost --port 8000"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     depends_on:
+      - redis
+
+  test:
+    build: .
+    container_name: flightstats_test
+    command: sh -c "pytest test.py"
+    volumes:
+      - .:/app
+    depends_on:
+      - app
       - redis
 
   celery:

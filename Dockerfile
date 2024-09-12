@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in package.py (runs requirements.txt installation)
-RUN python package.py
+RUN python packages_init.py
 
 # Install Celery and Redis explicitly
 RUN pip install celery redis
@@ -20,4 +20,4 @@ EXPOSE 8000
 EXPOSE 6379
 
 # Default command to run Celery worker and Uvicorn server (can be overridden by docker-compose)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "localhost", "--port", "8000"]

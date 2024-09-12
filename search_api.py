@@ -1,6 +1,5 @@
-
 from fastapi import APIRouter, Query
-from dependencies.flightstats import get_flights_info
+from flightstats import get_flights_info
 
 class FlightSearchAPI:
     def __init__(self):
@@ -16,15 +15,16 @@ class FlightSearchAPI:
         )
         async def search_flight(
             airline_code: str = Query(
-                description="query string",
-                example="AK",
+                description="airline_code",
+                examples="SQ",
             ),
             airline_number: str = Query(
-                example="11"
+                description="airline_number",
+                examples="105"
             ),
             departure_date: str = Query(
-                description="departure date",
-                example="2023-09-08"
+                description="departure_date",
+                examples="2024-09-11"
             )
         ):
             return await get_flights_info(airline_code, airline_number, departure_date)

@@ -1,10 +1,8 @@
 from fastapi import HTTPException
 import requests
 from datetime import datetime
-from models.flight import Flight
-from db_init import session
-from helpers.scraper import scrape_essential_data
-from models import error_message
+from db_init import Flight, session
+from scraper import scrape_essential_data
 import app_config
 
 async def get_flights_info(airline_code, airline_number, departure_date):
@@ -15,7 +13,7 @@ async def get_flights_info(airline_code, airline_number, departure_date):
     except ValueError as e:
         raise HTTPException(status_code=422, detail={
             "Error": "InvalidDateTimeFormat",
-            "Description": error_message.InvalidDateTimeMessage,
+            "Description": "Invalid departure date format. Use YYYY-MM-DD",
             "Details": str(e)
         })
     
@@ -55,18 +53,18 @@ async def get_flights_info(airline_code, airline_number, departure_date):
                 else:
                     raise HTTPException(status_code=422, detail={
                         "Error": "JSONError",
-                        "Description": error_message.ScrapingErrorMessage
+                        "Description": "There is an error during data scraping. Flight information cannot be found."
                     })
             except Exception as e:
                 raise HTTPException(status_code=422, detail={
                     "Error": "ScrapingError",
-                    "Description": error_message.ScrapingErrorMessage,
+                    "Description": "There is an error during data scraping. Flight information cannot be found.",
                     "Details": str(e)
                 })   
         except requests.exceptions.RequestException as e:
             raise HTTPException(status_code=502, detail={
                     "Error": "HTTPConnectionError",
-                    "Description": error_message.HTTPConnectionErrorMessage,
+                    "Description": "There is an error connecting to the Flightstats website.",
                     "Details": str(e)
                 })
         finally:

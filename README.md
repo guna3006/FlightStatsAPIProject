@@ -47,13 +47,13 @@ docker run -p 8000:8000 flightstats-api
 
 ## API Usage
 You can interact with the API using the provided Postman collection (`FlightStats_Postman_Collection.json`), which includes:
-- **Search Flight**: `/api/search?airline_code=AK&airline_number=11&departure_date=2023-09-08`
+- **Search Flight**: `/api/search?airline_code=SQ&airline_number=105&departure_date=2024-09-11`
 
 ## Logging
 Logs are stored in the `logs/` directory, with filenames in the format `logs_<date>.log`.
 
 ## Database
-The SQLite database is stored in the `db/` directory as `stats.db`.
+The SQLite database is stored in the `db/` directory as `flightstats.db`.
 
 ## Background Tasks
 Celery is used for background tasks. A sample task (`sample_task`) is available for demonstration purposes.
